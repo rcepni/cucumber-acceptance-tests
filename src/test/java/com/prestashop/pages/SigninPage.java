@@ -17,7 +17,7 @@ public class SigninPage {
 	@FindBy(id = "email")
 	public WebElement loginEmail;
 	
-	@FindBy(id = "password")
+	@FindBy(id = "passwd")
 	public WebElement password;
 	
 	@FindBy(id = "submitLogin")

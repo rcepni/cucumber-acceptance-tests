@@ -1,8 +1,10 @@
 package com.prestashop.step_definitions;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import com.prestashop.pages.HomePage;
+import com.prestashop.pages.SigninPage;
 import com.prestashop.utilities.ConfigurationReader;
 import com.prestashop.utilities.Driver;
 
@@ -35,16 +37,30 @@ public class HomePageStepDefs {
 
 	}
 
+	String title;
+
 	@When("the user gets the title of the page")
 	public void the_user_gets_the_title_of_the_page() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
+		title = Driver.getDriver().getTitle();
 	}
 
 	@Then("title should be Search - My Store")
 	public void title_should_be_Search_My_Store() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
+		assertEquals("My Store", title);
+	}
+
+	@When("the user clicks on the Sign in link")
+	public void the_user_clicks_on_the_Sign_in_link() {
+		HomePage homePage = new HomePage();
+		homePage.signin.click();
+	}
+
+	@Then("username and password fields should be displayed")
+	public void username_and_password_fields_should_be_displayed() {
+		SigninPage signinPage = new SigninPage();
+		
+		assertTrue(signinPage.loginEmail.isDisplayed());
+		assertTrue(signinPage.password.isDisplayed());
 	}
 
 }

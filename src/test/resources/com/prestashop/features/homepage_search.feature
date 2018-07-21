@@ -1,5 +1,6 @@
 Feature: home page search functionality
-
+	
+	@search @smoke
   Scenario: Verify search term
     Given the user is on the home page
     When the user enters a search term
@@ -10,4 +11,7 @@ Feature: home page search functionality
     When the user gets the title of the page
     Then title should be Search - My Store
     
-    # break until later
+    
+    
+    
+    

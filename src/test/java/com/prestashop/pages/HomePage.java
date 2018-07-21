@@ -14,4 +14,7 @@ public class HomePage {
 	@FindBy(id = "search_query_top")
 	public WebElement search;
 	
+	@FindBy(className = "login")
+	public WebElement signin;
+	
 }
