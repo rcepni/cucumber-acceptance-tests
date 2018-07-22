@@ -7,7 +7,6 @@ import com.prestashop.pages.HomePage;
 import com.prestashop.pages.ItemPage;
 import com.prestashop.utilities.Driver;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -42,13 +41,23 @@ public class ProductInformaitonStepDefs {
 		assertEquals("S", itemPage.size().getFirstSelectedOption().getText());
 	}
 
+	@When("the user selects {string}")
+	public void the_user_selects(String item) {
+		homePage.item(item).click();
+	}
+
+	@Then("product page title should contain {string}")
+	public void product_page_title_should_contain(String item) {
+		assertTrue(Driver.getDriver().getTitle().contains(item));
+	}
+
+	@Then("product name should be {string}")
+	public void product_name_should_be(String item) {
+		ItemPage itemPage = new ItemPage();
+		assertEquals(item, itemPage.itemName.getText());
+	}
+
 }
-
-
-
-
-
-
 
 
 
