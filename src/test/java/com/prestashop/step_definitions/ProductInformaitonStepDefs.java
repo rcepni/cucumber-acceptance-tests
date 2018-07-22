@@ -3,11 +3,12 @@ package com.prestashop.step_definitions;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Random;
+
 import com.prestashop.pages.HomePage;
 import com.prestashop.pages.ItemPage;
 import com.prestashop.utilities.Driver;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -61,16 +62,35 @@ public class ProductInformaitonStepDefs {
 	@Then("correct default count should be {int}")
 	public void correct_default_count_should_be(Integer count) {
 		ItemPage itemPage = new ItemPage();
-		assertEquals(count+"", itemPage.count.getAttribute("value"));
+		assertEquals(count + "", itemPage.count.getAttribute("value"));
 
 	}
 
 	@Then("the user should be able to toggle the count")
 	public void the_user_should_be_able_to_toggle_the_count() {
 		ItemPage itemPage = new ItemPage();
+		int number = new Random().nextInt(49) + 2;
 		
+		for (int i = 0; i <= number; i++) {
+			itemPage.plus.click();
+			assertEquals(i + 2 + "", itemPage.count.getAttribute("value"));
+		}
+
+		for (int i = number; i >= 0; i--) {
+			itemPage.minus.click();
+			assertEquals(i + 1 + "", itemPage.count.getAttribute("value"));
+		}
 		
-		
+		itemPage.minus.click();
+		assertEquals("1", itemPage.count.getAttribute("value"));
+
 	}
 
 }
+
+
+
+
+
+
+
