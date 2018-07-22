@@ -19,12 +19,10 @@ Scenario: Display the correct product name by name
 	And product name should be "Printed Summer Dress" 
 	
 	
-@temp 
 Scenario: Display the correct product name by name 2 
 	When the user selects "Printed Chiffon Dress" 
 	Then product page title should contain "Printed Chiffon Dress" 
 	And product name should be "Printed Chiffon Dress" 
 	
-	# break 
 	
 	
