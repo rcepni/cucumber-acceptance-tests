@@ -7,7 +7,6 @@ Scenario: login link
 	When the user clicks on the Sign in link 
 	Then username and password fields should be displayed 
 	
-@temp 
 Scenario: verify user name and last name 
 	Given the user is on the login page 
 	When I login using username "nitoyey@dumoac.net" and password "password" 

@@ -19,6 +19,13 @@ public class ItemPage {
 	@FindBy(id = "quantity_wanted")
 	public WebElement count;
 	
+	@FindBy(className = "icon-plus")
+	public WebElement plus;
+	
+	
+	@FindBy(className = "icon-minus")
+	public WebElement minus;
+	
 	public Select size() {
 		return new Select(Driver.getDriver().findElement(By.id("group_1")));
 	}
