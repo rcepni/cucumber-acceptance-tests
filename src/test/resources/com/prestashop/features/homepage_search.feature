@@ -1,6 +1,6 @@
 Feature: home page search functionality
 	
-	@search @smoke
+	 @smoke
   Scenario: Verify search term
     Given the user is on the home page
     When the user enters a search term

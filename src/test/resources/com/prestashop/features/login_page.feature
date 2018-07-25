@@ -10,10 +10,10 @@ Scenario: login link
 Scenario: verify user name and last name 
 	Given the user is on the login page 
 	When I login using username "nitoyey@dumoac.net" and password "password" 
-	Then users full name "Johny" "Smith" should be displayed 
+	Then users full name "John" "Smith" should be displayed 
 	
 	#break
-@amazon_check 
+@amazon_check 	@regression
 Scenario: verify goes to different site first 
 	Given the user amazon 
 	And user gets prices for "Printed Chiffon Dress" 
