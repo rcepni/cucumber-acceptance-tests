@@ -1,9 +1,10 @@
-@temp
+	@temp
 Feature: Product information 
 
 Background: 
 	Given the user is on the home page 
 	
+
 Scenario: Display the correct product name 
 	When the user selects Printed Summer Dress 
 	Then product information page should be displayed 
