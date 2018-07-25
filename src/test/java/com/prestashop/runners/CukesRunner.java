@@ -7,14 +7,16 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		plugin = {"pretty",
-				"html:target/default-cucumber-reports"
+		plugin = {
+				"pretty",
+				"html:target/default-cucumber-reports",
+				"json:target/cucumber.json"
 		
 		},
 		
 		tags="@temp",
 		features="src/test/resources/com/prestashop/features", 
 		glue="com/prestashop/step_definitions"
-//		dryRun = false
+		,dryRun = true
 		)
 public class CukesRunner {}
