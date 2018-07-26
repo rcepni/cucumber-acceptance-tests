@@ -1,4 +1,3 @@
-@temp
 Feature: Product information 
 
 Background: 

@@ -23,4 +23,10 @@ public class SigninPage {
 	@FindBy(id = "SubmitLogin")
 	public WebElement submitLogin;
 	
+	@FindBy(id = "create_account_error")
+	public WebElement errorMessage;
+	
+	
+	
+	
 }
