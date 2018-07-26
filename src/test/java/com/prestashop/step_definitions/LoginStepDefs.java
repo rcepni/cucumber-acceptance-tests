@@ -1,8 +1,10 @@
 package com.prestashop.step_definitions;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.ui.Select;
 
 import com.github.javafaker.Address;
 import com.github.javafaker.Faker;
@@ -21,7 +23,6 @@ import cucumber.api.java.en.When;
 
 public class LoginStepDefs {
 
-	
 	SigninPage signinPage = new SigninPage();
 	String email;
 
@@ -55,50 +56,57 @@ public class LoginStepDefs {
 
 	@Then("the system should display error message {string}")
 	public void the_system_should_display_error_message(String message) {
-		// signinPage.errorMessage is always present in the page, with or without any error
+		// signinPage.errorMessage is always present in the page, with or without any
+		// error
 		// but it only becomes visible when there is an actual error message
-		// calling an explicit wait utility method to wait for the visibility of the message
+		// calling an explicit wait utility method to wait for the visibility of the
+		// message
 		BrowserUtils.waitForVisibility(signinPage.errorMessage, 5);
 		// now that element is fully loaded, we can capture the text
 		String actual = signinPage.errorMessage.getText();
 		assertEquals(message, actual);
-		
+
 	}
-	
+
 	@When("the user tries to register blank email")
 	public void the_user_tries_to_register_blank_email() {
 		// submit the form without entering email
 		signinPage.signupEmail.sendKeys("");
 		signinPage.signupEmail.submit();
 	}
-	
+
 	@Given("there is an existing user")
 	public void there_is_an_existing_user() {
 		Faker fake = new Faker();
 		new HomePage().signin.click();
-        email = fake.name().username() + "@gmail.com";
-        signinPage.signupEmail.sendKeys(email+Keys.ENTER);
-        
-        RegistrationPage registrationPage = new RegistrationPage();
-        registrationPage.firstName.sendKeys(fake.name().firstName());
-        registrationPage.lastName.sendKeys(fake.name().lastName());
-        registrationPage.password.sendKeys("password123");
-        
-        Address adress = fake.address();
-        
-        registrationPage.address.sendKeys(adress.buildingNumber() + " " + adress.streetName());
-        registrationPage.city.sendKeys(adress.city());
-        registrationPage.stateList().selectByIndex(2);
-        registrationPage.zipCode.sendKeys(adress.zipCode());
-        registrationPage.mobilePhone.sendKeys(fake.phoneNumber().cellPhone());
-        registrationPage.register.click();
+		email = fake.name().username() + "@gmail.com";
+		System.out.println(email);
+		signinPage.signupEmail.sendKeys(email + Keys.ENTER);
+
+		RegistrationPage registrationPage = new RegistrationPage();
+		String firstName = fake.name().firstName();
+		registrationPage.firstName.sendKeys(firstName);
+		registrationPage.lastName.sendKeys(fake.name().lastName());
+		registrationPage.password.sendKeys("password123");
+		Address adress = fake.address();
+		registrationPage.address.sendKeys(adress.buildingNumber() + " " + adress.streetName());
+		registrationPage.city.sendKeys(adress.city());
+//		BrowserUtils.waitFor(2);
+		Select stateList = registrationPage.stateList();
+		stateList.selectByValue("2");
+		registrationPage.zipCode.sendKeys(adress.zipCode().substring(0, 5));
+		registrationPage.mobilePhone.sendKeys(fake.phoneNumber().cellPhone());
+		registrationPage.register.click();
+		
+		MyAccountPage myAccountPage = new MyAccountPage();
+		
+		myAccountPage.logout.click();
+
 	}
 
 	@When("the user tries to register the same email")
 	public void the_user_tries_to_register_the_same_email() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+		signinPage.signupEmail.sendKeys(email + Keys.ENTER);
 	}
-
 
 }

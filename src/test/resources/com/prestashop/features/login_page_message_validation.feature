@@ -10,11 +10,11 @@ Scenario: blank email
 	When the user tries to register blank email 
 	Then the system should display error message "Invalid email address." 
 	
-@temp	
+@temp 
 Scenario: existing email 
 	Given there is an existing user 
 	And the user is on the login page 
-	When the user tries to register the same email
+	When the user tries to register the same email 
 	Then the system should display error message "An account using this email address has already been registered. Please enter a valid password or request a new one." 
 	
 	

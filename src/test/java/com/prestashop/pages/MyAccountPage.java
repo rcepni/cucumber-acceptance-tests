@@ -13,4 +13,7 @@ public class MyAccountPage {
 
 	@FindBy(css = ".account>span")
 	public WebElement fullName;
+	
+	@FindBy(className = "logout")
+	public WebElement logout;
 }
