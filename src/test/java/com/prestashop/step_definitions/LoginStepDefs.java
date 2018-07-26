@@ -2,8 +2,13 @@ package com.prestashop.step_definitions;
 
 import static org.junit.Assert.assertEquals;
 
+import org.openqa.selenium.Keys;
+
+import com.github.javafaker.Address;
+import com.github.javafaker.Faker;
 import com.prestashop.pages.HomePage;
 import com.prestashop.pages.MyAccountPage;
+import com.prestashop.pages.RegistrationPage;
 import com.prestashop.pages.SigninPage;
 import com.prestashop.utilities.BrowserUtils;
 import com.prestashop.utilities.ConfigurationReader;
@@ -18,6 +23,7 @@ public class LoginStepDefs {
 
 	
 	SigninPage signinPage = new SigninPage();
+	String email;
 
 	@Given("the user is on the login page")
 	public void the_user_is_on_the_login_page() {
@@ -58,5 +64,41 @@ public class LoginStepDefs {
 		assertEquals(message, actual);
 		
 	}
+	
+	@When("the user tries to register blank email")
+	public void the_user_tries_to_register_blank_email() {
+		// submit the form without entering email
+		signinPage.signupEmail.sendKeys("");
+		signinPage.signupEmail.submit();
+	}
+	
+	@Given("there is an existing user")
+	public void there_is_an_existing_user() {
+		Faker fake = new Faker();
+		new HomePage().signin.click();
+        email = fake.name().username() + "@gmail.com";
+        signinPage.signupEmail.sendKeys(email+Keys.ENTER);
+        
+        RegistrationPage registrationPage = new RegistrationPage();
+        registrationPage.firstName.sendKeys(fake.name().firstName());
+        registrationPage.lastName.sendKeys(fake.name().lastName());
+        registrationPage.password.sendKeys("password123");
+        
+        Address adress = fake.address();
+        
+        registrationPage.address.sendKeys(adress.buildingNumber() + " " + adress.streetName());
+        registrationPage.city.sendKeys(adress.city());
+        registrationPage.stateList().selectByIndex(2);
+        registrationPage.zipCode.sendKeys(adress.zipCode());
+        registrationPage.mobilePhone.sendKeys(fake.phoneNumber().cellPhone());
+        registrationPage.register.click();
+	}
+
+	@When("the user tries to register the same email")
+	public void the_user_tries_to_register_the_same_email() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
 
 }
