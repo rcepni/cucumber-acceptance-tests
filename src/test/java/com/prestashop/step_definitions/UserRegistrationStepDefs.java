@@ -38,15 +38,13 @@ public class UserRegistrationStepDefs {
 
 	@Given("the user enters user information")
 	public void the_user_enters_user_information(List<User> users) {
-		
-		// Write code here that turns the phrase above into concrete actions
-		// For automatic transformation, change DataTable to one of
-		// List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-		// Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-		// Double, Byte Short, Long, BigInteger or BigDecimal.
-		//
-		// For other transformations you can register a DataTableType.
-		throw new PendingException();
+		for (User user : users) {
+			System.out.println(user.getFistName());
+			System.out.println(user.getLastName());
+			System.out.println(user.getAddress());
+			System.out.println(user.getCity());
+			System.out.println(user.getCompany());
+		}
 	}
 
 }

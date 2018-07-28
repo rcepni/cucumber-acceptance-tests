@@ -10,6 +10,11 @@ import cucumber.api.TypeRegistryConfigurer;
 import io.cucumber.datatable.DataTableType;
 import io.cucumber.datatable.TableEntryTransformer;
 
+
+/*
+ * THis class needs to be in same package as step deifnitons
+ * it will map the datatable to our custom object
+ */
 public class DataTableConfigurer implements TypeRegistryConfigurer{
 
 	@Override
@@ -25,6 +30,7 @@ public class DataTableConfigurer implements TypeRegistryConfigurer{
 
 					@Override
 					public User transform(Map<String, String> row) throws Throwable {
+						// these keys must match the data table in the feature file
 						String firstName = row.get("First Name");
 						String lastName = row.get("Last Name");
 						String address = row.get("Address");
@@ -34,6 +40,14 @@ public class DataTableConfigurer implements TypeRegistryConfigurer{
 					}
 				}));
 
+//		typeRegistry.defineDataTableType(new DataTableType(
+//	            User.class,
+//	            (Map<String, String> row) -> new User(
+//	                row.get("name"),
+//	                Price.fromString(row.get("price"))
+//	            )
+//	        ));
+		
 	}
 
 }
