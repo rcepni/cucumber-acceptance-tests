@@ -6,6 +6,7 @@ import java.util.Map;
 import org.openqa.selenium.Keys;
 
 import com.github.javafaker.Faker;
+import com.prestashop.beans.User;
 import com.prestashop.pages.RegistrationPage;
 import com.prestashop.pages.SigninPage;
 
@@ -37,6 +38,7 @@ public class UserRegistrationStepDefs {
 
 	@Given("the user enters user information")
 	public void the_user_enters_user_information(List<User> users) {
+		
 		// Write code here that turns the phrase above into concrete actions
 		// For automatic transformation, change DataTable to one of
 		// List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
