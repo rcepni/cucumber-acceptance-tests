@@ -22,7 +22,6 @@ public class ItemPage {
 	@FindBy(className = "icon-plus")
 	public WebElement plus;
 	
-	
 	@FindBy(className = "icon-minus")
 	public WebElement minus;
 	

@@ -3,14 +3,17 @@ package com.prestashop.step_definitions;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Map;
 import java.util.Random;
 
 import com.prestashop.pages.HomePage;
 import com.prestashop.pages.ItemPage;
 import com.prestashop.utilities.Driver;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import gherkin.ast.DataTable;
 
 public class ProductInformaitonStepDefs {
 
@@ -84,6 +87,15 @@ public class ProductInformaitonStepDefs {
 		itemPage.minus.click();
 		assertEquals("1", itemPage.count.getAttribute("value"));
 
+	}
+	
+	@Then("the system should display the product information:")
+	public void the_system_should_display_the_product_information(Map<String, String> product) {
+		System.out.println(product);
+		
+		String expectedName = product.get("name");
+		System.out.println("Product name: "+expectedName);
+		
 	}
 
 }
