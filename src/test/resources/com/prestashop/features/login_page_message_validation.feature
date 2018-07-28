@@ -10,7 +10,6 @@ Scenario: blank email
 	When the user tries to register blank email 
 	Then the system should display error message "Invalid email address." 
 	
-@temp 
 Scenario: existing email 
 	Given there is an existing user 
 	And the user is on the login page 
