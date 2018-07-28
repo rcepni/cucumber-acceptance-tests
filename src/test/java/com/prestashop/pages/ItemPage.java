@@ -24,6 +24,12 @@ public class ItemPage {
 	
 	@FindBy(className = "icon-minus")
 	public WebElement minus;
+
+	@FindBy(css = "#product_condition>.editable")
+	public WebElement condition;
+	
+	@FindBy(className = "our_price_display")
+	public WebElement price;
 	
 	public Select size() {
 		return new Select(Driver.getDriver().findElement(By.id("group_1")));
