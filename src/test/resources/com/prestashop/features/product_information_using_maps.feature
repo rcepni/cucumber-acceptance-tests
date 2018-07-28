@@ -33,3 +33,4 @@ Scenario: Product details with map 2
 		
 		
 		
+		
