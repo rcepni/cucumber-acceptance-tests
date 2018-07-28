@@ -44,6 +44,12 @@ public class UserRegistrationStepDefs {
 			System.out.println(user.getAddress());
 			System.out.println(user.getCity());
 			System.out.println(user.getCompany());
+			
+//			registrationPage.firstName.sendKeys(user.getFistName());
+//			registrationPage.lastName.sendKeys(user.getLastName());
+//			registrationPage.address.sendKeys(user.getAddress());
+//			registrationPage.city.sendKeys(user.getCity());
+//			registrationPage.company.sendKeys(user.getCompany());
 		}
 	}
 

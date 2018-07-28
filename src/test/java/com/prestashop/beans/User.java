@@ -4,12 +4,12 @@ package com.prestashop.beans;
 // model   --> used to represent a certain type of object
 
 public class User {
-	String firstName;
-	String lastName;
-	String address;
-	String company;
-	String city;
-	
+	private String firstName;
+	private String lastName;
+	private String address;
+	private String company;
+	private String city;
+
 	public User(String fistName, String lastName, String address, String company, String city) {
 		this.firstName = fistName;
 		this.lastName = lastName;
@@ -17,33 +17,43 @@ public class User {
 		this.company = company;
 		this.city = city;
 	}
+
 	public String getFistName() {
 		return firstName;
 	}
+
 	public void setFistName(String fistName) {
 		this.firstName = fistName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getCompany() {
 		return company;
 	}
+
 	public void setCompany(String company) {
 		this.company = company;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
