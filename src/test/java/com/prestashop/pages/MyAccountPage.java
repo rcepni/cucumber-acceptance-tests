@@ -16,4 +16,8 @@ public class MyAccountPage {
 	
 	@FindBy(className = "logout")
 	public WebElement logout;
+	
+	@FindBy(css = "a[title='Information']")
+	public WebElement myPersonalInformaiton;
+	
 }

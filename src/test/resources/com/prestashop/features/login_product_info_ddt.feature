@@ -12,9 +12,8 @@ Scenario Outline: Verify item name
 		| price   	|product               |
 		| $28.98    |Printed Summer Dress  |
 		| $26.00  	|Printed Dress         |
-		| $16.40  	|Printed Chiffon Dress |
+		| $160.40  	|Printed Chiffon Dress |
 		
-
 Scenario Outline: Verify usernames 
 	Given the user is on the login page 
 	When I login using username "<username>" and password "<password>" 

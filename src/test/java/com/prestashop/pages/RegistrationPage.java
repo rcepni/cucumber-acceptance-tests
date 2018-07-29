@@ -18,7 +18,7 @@ public class RegistrationPage {
 	@FindBy (id="customer_lastname")
 	public WebElement lastName;
 	
-	@FindBy (id="")
+	@FindBy (id="email")
 	public WebElement email;
 	
 	@FindBy (id="passwd")
