@@ -41,8 +41,7 @@ public class DataTableConfigurer implements TypeRegistryConfigurer{
 				}));
 
 //		typeRegistry.defineDataTableType(new DataTableType(
-//	            User.class,
-//	            (Map<String, String> row) -> new User(
+//	            User.class, (Map<String, String> row) -> new User(
 //	                row.get("name"),
 //	                Price.fromString(row.get("price"))
 //	            )

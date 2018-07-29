@@ -59,7 +59,8 @@ public class ProductInformaitonStepDefs {
 	@Then("product name should be {string}")
 	public void product_name_should_be(String item) {
 		ItemPage itemPage = new ItemPage();
-		assertEquals(item, itemPage.itemName.getText());
+		String actual = itemPage.itemName.getText();
+		assertEquals(item, actual);
 	}
 
 	@Then("correct default count should be {int}")
@@ -117,6 +118,13 @@ public class ProductInformaitonStepDefs {
 		
 		
 	}
+	
+	@Then("the price should be {string}")
+	public void the_price_should_be(String expectedPrice) {
+	    String actualPrice = new ItemPage().price.getText();
+		assertEquals(expectedPrice, actualPrice);
+	}
+
 
 }
 

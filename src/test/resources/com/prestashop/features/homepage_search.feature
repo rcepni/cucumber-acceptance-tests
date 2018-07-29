@@ -14,4 +14,3 @@ Feature: home page search functionality
     
     
     
-    

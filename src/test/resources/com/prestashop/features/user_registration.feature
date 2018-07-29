@@ -10,7 +10,6 @@ Scenario: User registration
 		|City      | Anytown    |
 		|Company   | Volvo      |
 		
-@temp 
 Scenario: Custom User registration 
 	Given the user is on the login page 
 	And the user enters a random email 
@@ -18,6 +17,7 @@ Scenario: Custom User registration
 		|First Name | Last Name |Company   |Address    |City     |
 		| Admiral   |Kunnka     |Volvo     |123 Main st| Anytown |		
 
+# lines below are not implemented
 Scenario: user info
 	Then correct user info should be displayed
 			|First Name | Last Name |Company   |Address    |City     |

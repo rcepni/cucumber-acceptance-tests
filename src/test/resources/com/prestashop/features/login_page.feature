@@ -20,4 +20,3 @@ Scenario: verify goes to different site first
 	When the user is on the home page 
 	Then the price for "Printed Chiffon Dress" should be cheaper 
 	
-	
