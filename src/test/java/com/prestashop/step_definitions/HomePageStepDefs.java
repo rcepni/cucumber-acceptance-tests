@@ -3,6 +3,8 @@ package com.prestashop.step_definitions;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Map;
+
 import com.prestashop.pages.HomePage;
 import com.prestashop.pages.SigninPage;
 import com.prestashop.utilities.ConfigurationReader;
@@ -61,6 +63,16 @@ public class HomePageStepDefs {
 		
 		assertTrue(signinPage.loginEmail.isDisplayed());
 		assertTrue(signinPage.password.isDisplayed());
+	}
+	
+	
+	@Then("the title and url should be:")
+	public void the_title_and_url_should_be(Map<String, String> map) {
+	   String expectedTitle = map.get("Title");
+	   assertEquals(expectedTitle, Driver.getDriver().getTitle());
+	   
+	   String expectedUrl = map.get("Url");
+	   assertEquals(expectedUrl, Driver.getDriver().getCurrentUrl());
 	}
 
 }

@@ -1,6 +1,6 @@
 Feature: Verify product information 
 
-@temp 
+
 Scenario Outline: Verify item name 
 	Given the user is on the home page 
 	When the user selects "<product>" 
@@ -35,6 +35,53 @@ Scenario Outline: Verify usernames
         |Sydney    |Vazquez  |tincidunt.nunc.ac@atiaculis.edu   |password|
         |Martena   |Murray   |Donec.fringilla@mauris.org        |password|
         |Quynn     |Rocha    |lorem@enimCurabiturmassa.net      |password|
-  
-  
-  
+        
+       
+Scenario Outline: Product details with map and outline
+	Given the user is on the home page
+	When the user selects "<product>"
+	Then the system should display the product information:
+		|name	  |	<product>   |
+		|count    |	1	        |
+		|condition|	New	        |
+		|size	  |	S		    |
+		|price    | 	<price>		|  
+		
+	Examples:
+		| price   	|product               |
+		| $28.98    |Printed Summer Dress  |
+		| $26.00  	|Printed Dress         |
+		| $16.40  	|Printed Chiffon Dress |
+		
+Scenario Outline: verify <page> title
+	When the user is on the <page>
+	Then the title and url should be:
+		|Title|<title>|
+		|Url  |<url>  |
+		
+	Examples: 
+		|page      |title           |url                                    |
+		|home page | My Store       |http://automationpractice.com/index.php|
+		|login page|Login - My Store|http://automationpractice.com/index.php?controller=authentication&back=my-account|
+
+
+
+
+
+
+
+
+
+
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		      
+        
