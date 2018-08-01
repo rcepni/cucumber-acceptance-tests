@@ -51,7 +51,7 @@ public class ExcelUtil {
 
 		String[][] data = new String[rowCount()][columnCount()];
 
-		for (int i = 0; i < rowCount(); i++) {
+		for (int i = 0; i <rowCount(); i++) {
 			for (int j = 0; j < columnCount(); j++) {
 				String value = getCellData(i, j);
 				data[i][j] = value;
@@ -62,12 +62,16 @@ public class ExcelUtil {
 	}
 
 	public List<Map<String, String>> getDataList() {
-
+		// get all columns
 		List<String> columns = getColumnsNames();
-
+		// this will be returned
 		List<Map<String, String>> data = new ArrayList<>();
+		
 		for (int i = 1; i <= rowCount(); i++) {
+			// get each rown
 			Row row = workSheet.getRow(i);
+			// create map of the row using the column and value
+			// column map key, cell value --> map bvalue
 			Map<String, String> rowMap = new HashMap<String, String>();
 			for (Cell cell : row) {
 				int columnIndex = cell.getColumnIndex();
