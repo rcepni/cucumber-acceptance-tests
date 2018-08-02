@@ -67,8 +67,8 @@ public class ExcelUtil {
 		// this will be returned
 		List<Map<String, String>> data = new ArrayList<>();
 		
-		for (int i = 1; i <= rowCount(); i++) {
-			// get each rown
+		for (int i = 1; i < rowCount(); i++) {
+			// get each row
 			Row row = workSheet.getRow(i);
 			// create map of the row using the column and value
 			// column map key, cell value --> map bvalue
@@ -126,7 +126,7 @@ public class ExcelUtil {
 	}
 
 	public int rowCount() {
-		return workSheet.getLastRowNum();
+		return workSheet.getPhysicalNumberOfRows();
 	}
 
 }
