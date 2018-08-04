@@ -2,15 +2,17 @@ package com.prestashop.step_definitions;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.prestashop.pages.SearchResultsPage;
 import com.prestashop.utilities.BrowserUtils;
 import com.prestashop.utilities.Driver;
+import com.prestashop.utilities.ExcelUtil;
+import com.prestashop.utilities.TestConstants;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -43,4 +45,28 @@ public class SearchSteps {
 		assertEquals(expectedName, actualName);
 		assertEquals(expectedPrice, actualPrice);
 	}
+
+	@Then("the user should be able to sort results")
+	public void the_user_should_be_able_to_sort_results() {
+		// open excel
+		String fileLoco = TestConstants.TEST_DATA_FOLDER + "Products.xlsx";
+		ExcelUtil excelObject = new ExcelUtil(fileLoco, "sort");
+		// iterate through data
+		List<Map<String, String>> data = excelObject.getDataList();
+
+		for (int i = 0; i < data.size(); i++) {
+			Map<String, String> row = data.get(i);
+			if (row.get("Execute").equals("Y")) {
+				excelObject.setCellData("Execute", "Status", i);
+			} else {
+				excelObject.setCellData("Skipped", "Status", i);
+			}
+		}
+
+		// see if we execute that row
+		// sort based on the excel sort value
+		// verify name and price based on value from excel
+
+	}
+
 }
