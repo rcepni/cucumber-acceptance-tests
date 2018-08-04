@@ -4,7 +4,13 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Map;
 
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+
 import com.prestashop.pages.SearchResultsPage;
+import com.prestashop.utilities.BrowserUtils;
+import com.prestashop.utilities.Driver;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -22,12 +28,15 @@ public class SearchSteps {
 	@When("user sorts by {string}")
 	public void user_sorts_by(String option) {
 		searchPage.sortBy().selectByVisibleText(option);
+		BrowserUtils.waitFor(1);
 	}
 
 	@Then("following product should be displayed on top")
-	public void following_product_should_be_displayed_on_top(Map<String, String> map) {
-		String expectedName = map.get("name");
-		String expectedPrice = map.get("price");
+	public void following_product_should_be_displayed_on_top(Map<String, String> product) {
+		Actions action = new Actions(Driver.getDriver());
+		action.sendKeys(Keys.ARROW_DOWN).perform();
+		String expectedName = product.get("name");
+		String expectedPrice = product.get("price");
 		String actualName = searchPage.getProductName(1).getText();
 		String actualPrice = searchPage.getProductPrice(1).getText();
 

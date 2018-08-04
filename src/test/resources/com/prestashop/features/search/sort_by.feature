@@ -1,12 +1,20 @@
-Feature: Sorting options on the seach result page
+Feature: Sorting options on the seach result page 
 
-@temp
-Scenario: Sort by
-	Given the user is on the home page
-	And the user clicks on link Dresses
-	When user sorts by "Price: Lowest first"
-	Then following product should be displayed on top
-	|name |Printed Chiffon Dress|
-	|price| $16.40              |
-	
-	
+@temp @ddt
+Scenario Outline: Sort by <option>
+	Given the user is on the home page 
+	And the user clicks on link Dresses 
+	When user sorts by "<option>" 
+	Then following product should be displayed on top 
+		|name |<name> |
+		|price|<price>|
+		
+		Examples:
+		|option				 	 |name				     | price |
+		|Price: Lowest first		 |Printed Chiffon Dress  | $16.40|
+		|Price: Highest first	 |Printed Dress			 | $50.99|
+		|Product Name: A to Z	 |Printed Chiffon Dress  | $16.40|
+#		|Product Name: Z to A	 |Printed Summer Dress   | $28.98|
+#		|In stock				 |Printed Chiffon Dress  | $16.40|
+#		|Reference: Lowest first |Printed Dress			 | $26.00|
+#		|Reference: Highest first|Printed Dress			 | $26.00|
