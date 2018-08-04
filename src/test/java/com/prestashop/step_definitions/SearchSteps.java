@@ -1,6 +1,7 @@
 package com.prestashop.step_definitions;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 import java.util.Map;
@@ -53,19 +54,37 @@ public class SearchSteps {
 		ExcelUtil excelObject = new ExcelUtil(fileLoco, "sort");
 		// iterate through data
 		List<Map<String, String>> data = excelObject.getDataList();
-
+		Actions action = new Actions(Driver.getDriver());
+		action.sendKeys(Keys.ARROW_DOWN).perform();
+		
+		boolean passing = true;
 		for (int i = 0; i < data.size(); i++) {
 			Map<String, String> row = data.get(i);
+			// see if we execute that row
 			if (row.get("Execute").equals("Y")) {
-				excelObject.setCellData("Execute", "Status", i);
+				// sort based on the excel sort value
+				searchPage.sortBy().selectByVisibleText(row.get("Option"));
+				BrowserUtils.waitFor(1);
+			
+
+				// verify name and price based on value from excel
+				String expectedName = row.get("Name");
+				String expectedPrice = row.get("Price");
+				String actualName = searchPage.getProductName(1).getText();
+				String actualPrice = searchPage.getProductPrice(1).getText();
+
+				if (expectedName.equals(actualName) && actualPrice.contains(expectedPrice)) {
+					excelObject.setCellData("Passed", "Status", i + 1);
+				} else {
+					excelObject.setCellData("Failed", "Status", i + 1);
+					passing = false;
+				}
+
 			} else {
-				excelObject.setCellData("Skipped", "Status", i);
+				excelObject.setCellData("Skipped", "Status", i + 1);
 			}
 		}
-
-		// see if we execute that row
-		// sort based on the excel sort value
-		// verify name and price based on value from excel
+		assertTrue(passing);
 
 	}
 

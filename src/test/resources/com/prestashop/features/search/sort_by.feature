@@ -21,8 +21,8 @@ Scenario Outline: Sort by <option>
 		
 @temp 
 Scenario: Test sort by dropdown 
-#	Given the user is on the home page 
-#	When the user clicks on link Dresses 
+	Given the user is on the home page 
+	When the user clicks on link Dresses 
 	Then the user should be able to sort results
 	
 	
